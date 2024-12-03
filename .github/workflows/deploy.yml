@@ -30,7 +30,7 @@ jobs:
         run: npm install
 
       - name: setup
-        run: npm run astro build -- --debug
+        run: npm run astro build
         
       - name: Save artifact for deployment
         uses: actions/upload-artifact@v3
