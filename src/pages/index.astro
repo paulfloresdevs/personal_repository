@@ -10,42 +10,9 @@ import Projects from "@/components/Projects.astro"
 import SectionContainer from "@/components/SectionContainer.astro"
 import Hero from "@/components/Hero.astro"
 import TitleSection from "@/components/TitleSection.astro"
+import Main from "./main.jsx"
 ---
 
-<Layout
-  title="Paul's Porfolio"
-  description="Hire Paul for your company. Backend Web Developer"
->
-  <main class="px-4">
-    <SectionContainer class="py-16 md:py-36">
-      <Hero>
-      </slot>
-    </Hero>
-    </SectionContainer>
-    <div class="space-y-24">
-    <SectionContainer id="experience">
-      <TitleSection>
-        <Briefcase class="size-8" />
-        Experience
-      </TitleSection>
-      <Experience />
-    </SectionContainer>
-
-    <SectionContainer id="projects">
-      <TitleSection>
-        <CodeIcon class="size-7" />
-        Projects
-      </TitleSection>
-      <Projects />
-    </SectionContainer>
-
-    <SectionContainer id="about-me">
-      <TitleSection>
-        <ProfileCheck class="size-8" />
-        About me
-      </TitleSection>
-      <AboutMe />
-    </SectionContainer>
-  </div>
-  </main>
-</Layout>
+<main>
+  <Main />
+</main>

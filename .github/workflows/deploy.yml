@@ -20,20 +20,37 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v3
-      - name: Install, build, and upload your site
-        uses: withastro/action@v1
+
+      - name: setup
+        run: |
+          npm install -g pnpm
+          npm run astro build
+
+      - name: Save artifact for deployment
+        uses: actions/upload-artifact@v3
         with:
-          # path: . # The root location of your Astro project inside the repository. (optional)
-           node-version: 18  #The specific version of Node that should be used to build your site. Defaults to 18. (optional)
-           package-manager: pnpm@latest # The Node package manager that should be used to install dependencies and build your site. Automatically detected based on your lockfile. (optional)
+          name: build-artifact # The name of the artifact to create
+          path: dist/ # The path to the directory or file you want to archive
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+      - name: Checkout repository
+        uses: actions/checkout@main
+
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifact
+        
+      - name: Deploy to S3
+        uses: jakejarvis/s3-sync-action@v0.5.1
+        with:
+          args: --follow-symlinks --delete --exclude '.git*/*'
+        env:
+          SOURCE_DIR: ./
+          AWS_REGION: us-east-1
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
