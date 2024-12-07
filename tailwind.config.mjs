@@ -7,14 +7,9 @@ export default {
 			fontFamily: {
 				space: ['Space Mono', 'monospace'],
 			},
-
 			height: {
 			  'custom': '52px', // Ajusta este valor según lo que consideres un tamaño medio (13 * 4px = 52px)
 			},
-
-			"ion-icon": {
-				'font-size': '64px',
-			}
 		}
 	},
 	plugins: [],
