@@ -5,10 +5,10 @@ function principalPage() {
     return (
         <div>
             <div>
-                <img src="background.png" alt="background image" className=""/>
+                <img src="background.png" alt="background image" className="w-full h-screen object-cover"/>
                 
                 <div className="absolute inset-0 flex flex-col items-center justify-center font-space space-y-4 mb-40">
-                    <h1 className="text-6xl text-gray-800 transform font-bold">
+                    <h1 className="text-4xl sm:text-6xl text-gray-800 transform font-bold">
                         Hey! I'm Paul!
                     </h1>
                     <h2 className="text-gray-800 font-bold text-2xl pt-5">
