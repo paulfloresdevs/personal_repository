@@ -1,10 +1,11 @@
-// vite.config.js
 import path from 'path';
+import svgr from 'vite-plugin-svgr';
 
 export default {
+  plugins: [svgr()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src')  // Esto hará que "@" apunte a la carpeta "src"
-    }
-  }
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
 };
